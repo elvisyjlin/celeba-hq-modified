@@ -629,14 +629,14 @@ def create_celeba_hq(h5_filename, celeba_dir, delta_dir, num_threads=4, num_task
     # print('Added %d images.' % len(fields['idx']))
     
     # Save all generated images.
-    for i, x in enumerate(fields['idx'][7382:]):
-        aidx, aimg64, aimg128, aimg256, aimg512, aimg1024 = process_func(x)
+    for idx in xrange(len(fields['idx'])):
+        aidx, aimg64, aimg128, aimg256, aimg512, aimg1024 = process_func(fields['idx'][idx])
         aimg64.save('./celeba-hq/celeba-64/%d.jpg' % aidx)
         aimg128.save('./celeba-hq/celeba-128/%d.jpg' % aidx)
         aimg256.save('./celeba-hq/celeba-256/%d.jpg' % aidx)
         aimg512.save('./celeba-hq/celeba-512/%d.jpg' % aidx)
         aimg1024.save('./celeba-hq/celeba-1024/%d.jpg' % aidx)
-        print('%d / %d' % (i + 1, len(fields['idx'][7382:])), end='\r')
+        print('%d / %d' % (idx + 1, len(fields['idx'])), end='\r')
         sys.stdout.flush()
     print('%-40s' % '', end='\r')
     sys.stdout.flush()
